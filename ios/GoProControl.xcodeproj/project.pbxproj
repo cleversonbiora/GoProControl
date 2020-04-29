@@ -16,6 +16,10 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* GoProControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GoProControlTests.m */; };
+		7D7E5BDCE091401FB5B73022 /* Gameplay.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 755838F0F5184BCC91CB4A65 /* Gameplay.ttf */; };
+		BB2D3EEE102448E4AE7C5C75 /* fa-brands-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6A3827DE52D4F57BD9F2560 /* fa-brands-400.ttf */; };
+		3B74B30FF0B04A3E8F7F0496 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 622507A9F0C64919A3DA8170 /* fa-regular-400.ttf */; };
+		3C981B0F463848FB8263EF01 /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF0D9A7CE89141538ADD6990 /* fa-solid-900.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		2D02E4901E0B4A5D006451C7 /* GoProControl-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GoProControl-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		755838F0F5184BCC91CB4A65 /* Gameplay.ttf */ = {isa = PBXFileReference; name = "Gameplay.ttf"; path = "../src/assets/fonts/Gameplay.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F6A3827DE52D4F57BD9F2560 /* fa-brands-400.ttf */ = {isa = PBXFileReference; name = "fa-brands-400.ttf"; path = "../src/assets/fonts/fa-brands-400.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		622507A9F0C64919A3DA8170 /* fa-regular-400.ttf */ = {isa = PBXFileReference; name = "fa-regular-400.ttf"; path = "../src/assets/fonts/fa-regular-400.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DF0D9A7CE89141538ADD6990 /* fa-solid-900.ttf */ = {isa = PBXFileReference; name = "fa-solid-900.ttf"; path = "../src/assets/fonts/fa-solid-900.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 				00E356EF1AD99517003FC87E /* GoProControlTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				3571832F66AA4C18B8C7D3F6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,6 +165,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		3571832F66AA4C18B8C7D3F6 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				755838F0F5184BCC91CB4A65 /* Gameplay.ttf */,
+				F6A3827DE52D4F57BD9F2560 /* fa-brands-400.ttf */,
+				622507A9F0C64919A3DA8170 /* fa-regular-400.ttf */,
+				DF0D9A7CE89141538ADD6990 /* fa-solid-900.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -295,6 +316,10 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				7D7E5BDCE091401FB5B73022 /* Gameplay.ttf in Resources */,
+				BB2D3EEE102448E4AE7C5C75 /* fa-brands-400.ttf in Resources */,
+				3B74B30FF0B04A3E8F7F0496 /* fa-regular-400.ttf in Resources */,
+				3C981B0F463848FB8263EF01 /* fa-solid-900.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

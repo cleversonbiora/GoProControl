@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
-import { Text, View, ScrollView, StyleSheet, Button } from 'react-native'
+import { Text, View, ScrollView, StyleSheet, Button, TouchableOpacity, PermissionsAndroid } from 'react-native'
+import FontAwesome, { SolidIcons, RegularIcons, BrandIcons } from 'react-native-fontawesome';
 import StatusService from '../services/StatusService';
 import hero7 from "../assets/hero7.json"
 import CommandService from '../services/CommandService';
+import { colors } from '../assets/colors';
+import ShutterButton from '../components/ShutterButton';
+import ModeButton from '../components/ModeButton';
+//import wifi from 'react-native-android-wifi';
 
 export default class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
             status:null,
-            connected:0
+            connected:0,
+            icon: SolidIcons.cog
         };
         this.handleStatus = this.handleStatus.bind(this);
     }
@@ -20,12 +26,52 @@ export default class Home extends Component {
 
     componentDidMount(){
         this.handleStatus();
+        // this.checkPermission();
+        // wifi.getSSID((ssid) => {
+        //     this.setState({network:ssid});
+        //   });
+
     }
+
+    // async checkPermission(){
+    //     try {
+    //         const granted = await PermissionsAndroid.request(
+    //             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    //             {
+    //             'title': 'Wifi networks',
+    //             'message': 'We need your permission in order to find wifi networks'
+    //             }
+    //         )
+    //         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+    //             console.log("Thank you for your permission! :)");
+    //         } else {
+    //             console.log("You will not able to retrieve wifi available networks list");
+    //         }
+    //     } catch (err) {
+    //         console.warn(err)
+    //     }
+    // }
 
     load = async () => {
         try {
             let status = await StatusService.get();
-            this.setState({status,connected:1});
+            let icon;
+            switch (status.status["43"]) {
+                case 0:
+                    icon = SolidIcons.video
+                    break;
+                case 1:
+                    icon = SolidIcons.camera
+                    break;
+                case 2:
+                    icon = SolidIcons.clock
+                    break;
+                default:
+                    icon = SolidIcons.cog
+                    break;
+            }
+            console.log(status);
+            this.setState({status,connected:1,icon});
         } catch (error) {
             this.setState({connected:2});
         }
@@ -47,42 +93,46 @@ export default class Home extends Component {
             CommandService.shutter(0);
     }
 
-    changeMode(cmd){
-        CommandService.mode(cmd);
+    changeMode(){
+        const {status} = this.state;
+        switch (status.status["43"]) {
+            case 1:
+                CommandService.mode(2);
+                break;
+            case 2:
+                CommandService.mode(0);
+                break;
+            default:
+                CommandService.mode(1);
+                break;
+        }
     }
 
     render() {
-        const {status,connected} = this.state;
+        const {status,connected,icon} = this.state;
         return (
             <ScrollView style={styles.outContainer}>
               <View style={styles.container}>   
-                <Text style={styles.text}> {status ? status.status["8"] : 'Loading...'}</Text>
-                <Text style={styles.text}> {status ? status.status["43"] : 'Loading...'}</Text>
-                <Text style={styles.text}> {connected}</Text>
-                <Button
-                    onPress={() => {
-                        this.trigger();
-                    }}
-                    title="Trigger"
-                    />
-                    <Button
+                <View style={styles.lcd}>
+                    <FontAwesome style={styles.awesome} icon={icon} />
+                    <Text style={styles.text}> {status ? status.status["8"] : 'Loading...'}</Text>
+                    <Text style={styles.text}> {status ? status.status["43"] : 'Loading...'}</Text>
+                    <Text style={styles.text}> {connected}</Text>
+                </View>
+                <TouchableOpacity 
                         onPress={() => {
-                            this.changeMode(1);
-                        }}
-                        title="Photo"
-                        />
-                    <Button
+                            this.trigger();
+                        }}>
+                    <ShutterButton/>
+                </TouchableOpacity>
+                
+                <TouchableOpacity 
                         onPress={() => {
-                            this.changeMode(0);
-                        }}
-                        title="Video"
-                        />
-                    <Button
-                        onPress={() => {
-                            this.changeMode(2);
-                        }}
-                        title="TimeWarp"
-                        />
+                            this.changeMode();
+                        }}>
+                    <ModeButton/>
+                </TouchableOpacity>
+                <Text style={{color:'#FFF'}}> {JSON.stringify(status)}</Text>
               </View>
             </ScrollView>
         )
@@ -92,7 +142,7 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
     outContainer: {
-      backgroundColor: '#333'
+      backgroundColor: colors.background
     },
     container: {
       flex: 1,
@@ -105,7 +155,17 @@ const styles = StyleSheet.create({
       width:"80%"
     },
     text:{
-        color:'#FFFFFF'
+        color:colors.dark,
+        fontFamily: "Gameplay"
+    },
+    lcd: {
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor:colors.lcd,
+        padding:10
+    },
+    awesome:{
+        color:colors.dark,
     }
   });
   
