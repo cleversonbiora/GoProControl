@@ -6,6 +6,11 @@ export default class CommandService {
         let data = result.json();
         return data;
     }
+    static async shutdown(){
+        let result = await fetch(`${enviroment.ip}/gp/gpControl/command/system/sleep`);
+        let data = result.json();
+        return data;
+    }
 
     static async mode(cmd){
         let result = await fetch(`${enviroment.ip}/gp/gpControl/command/mode?p=${cmd}`);
